@@ -6,6 +6,7 @@ from decouple import config
 BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = config("SECRET_KEY", default="dev-secret")
 DEBUG = config("DJANGO_DEBUG", default="0") == "1"
+PORT = config("PORT", default="8000")
 
 ALLOWED_HOSTS = config("ALLOWED_HOSTS", default="*").split(",")
 
