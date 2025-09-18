@@ -3,7 +3,7 @@ services:
     name: josnorth-biodata
     env: python
     buildCommand: ./build.sh
-    startCommand: gunicorn biodata_api.wsgi:application --bind 0.0.0.0:$PORT
+    startCommand: gunicorn biodata_api.wsgi:application --bind 0.0.0.0:$8000
     plan: free
     envVars:
       - key: SECRET_KEY
