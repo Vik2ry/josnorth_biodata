@@ -10,8 +10,8 @@ class ProfileAdmin(admin.ModelAdmin):
     )
     search_fields = ("first_name", "last_name", "email", "phone", "occupation")
     list_filter = ("verified", "created_at", "ward", "lga")
-    readonly_fields = ("slug", "created_at")
-    prepopulated_fields = {"slug": ("first_name", "last_name")}
+    readonly_fields = ("created_at",)
+    # prepopulated_fields = {"slug": ("first_name", "last_name")}
     fieldsets = (
         ("Basic Info", {
             "fields": ("first_name", "last_name", "slug", "date_of_birth", "occupation")
@@ -36,8 +36,8 @@ class EventAdmin(admin.ModelAdmin):
     list_display = ("id", "title", "location", "start", "end", "is_public", "created_at")
     search_fields = ("title", "location")
     list_filter = ("is_public", "created_at", "start")
-    readonly_fields = ("slug", "created_at")
-    prepopulated_fields = {"slug": ("title",)}
+    readonly_fields = ("created_at",)
+    # prepopulated_fields = {"slug": ("title",)}
     fieldsets = (
         ("Event Details", {
             "fields": ("title", "slug", "description", "location", "start", "end", "cover_image")
@@ -74,8 +74,8 @@ class ResourceAdmin(admin.ModelAdmin):
 class TeamAdmin(admin.ModelAdmin):
     list_display = ("id", "name", "created_at")
     search_fields = ("name", "description")
-    readonly_fields = ("slug", "created_at")
-    prepopulated_fields = {"slug": ("name",)}
+    readonly_fields = ("created_at",)
+    # prepopulated_fields = {"slug": ("name",)}
     filter_horizontal = ("members",)  # Better UI for many-to-many
     fieldsets = (
         ("Team Info", {
