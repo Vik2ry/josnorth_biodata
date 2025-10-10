@@ -8,7 +8,7 @@ SECRET_KEY = config("SECRET_KEY", default="dev-secret")
 DEBUG = config("DJANGO_DEBUG", default="0") == "1"
 PORT = config("PORT", default="8000")
 CSRF_TRUSTED_ORIGINS = config("CSRF_TRUSTED_ORIGINS", default="").split(",")
-# CORS_ALLOWED_ORIGINS= config("CORS_ALLOWED_ORIGINS", default="").split(",")
+CORS_ALLOWED_ORIGINS= config("CORS_ALLOWED_ORIGINS", default="").split(",")
 
 ALLOWED_HOSTS = config("ALLOWED_HOSTS", default="*").split(",")
 
@@ -55,11 +55,7 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
-# Allow all origins temporarily (for testing)
-CORS_ALLOW_ALL_ORIGINS = True
 
-# Optional: if you are using cookies or Authorization headers
-CORS_ALLOW_CREDENTIALS = True
 ROOT_URLCONF = 'biodata_api.urls'
 
 TEMPLATES = [
