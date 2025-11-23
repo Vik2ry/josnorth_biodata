@@ -10,6 +10,7 @@ from django.conf import settings
 
 urlpatterns=[
     path('admin/',admin.site.urls),
+    path('accounts/', include('allauth.urls')), # Add this line
     path('api/v1/',include('biodata.urls')),
     # API schema
     path("api/schema/", SpectacularAPIView.as_view(), name="schema"),

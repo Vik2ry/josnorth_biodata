@@ -1,9 +1,11 @@
 from drf_spectacular.utils import extend_schema, OpenApiExample
 from rest_framework import viewsets
+from rest_framework.permissions import IsAdminUser
+from dj_rest_auth.registration.views import RegisterView
 from .models import Profile, Event, Resource, Team
 from .serializers import ProfileSerializer, EventSerializer, ResourceSerializer, TeamSerializer
 from .permissions import IsAdminOrReadOnly
-
+from .user_serializers import AdminRegistrationSerializer
 
 @extend_schema(
     tags=["Profiles"],   # 👈 groups under Profiles
@@ -142,3 +144,15 @@ class TeamViewSet(viewsets.ModelViewSet):
     queryset = Team.objects.all()
     serializer_class = TeamSerializer
     permission_classes = [IsAdminOrReadOnly]
+
+
+@extend_schema(
+    tags=["Auth"],
+    description="Endpoint for an authenticated admin to create a new admin user. The new user will have `is_staff=True`."
+)
+class AdminRegistrationView(RegisterView):
+    """
+    Custom registration view for creating admin users.
+    """
+    serializer_class = AdminRegistrationSerializer
+    permission_classes = [IsAdminUser]
