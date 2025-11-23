@@ -1,8 +1,8 @@
 from drf_spectacular.utils import extend_schema, OpenApiExample
 from rest_framework import viewsets
-from rest_framework.permissions import IsAuthenticatedOrReadOnly
 from .models import Profile, Event, Resource, Team
 from .serializers import ProfileSerializer, EventSerializer, ResourceSerializer, TeamSerializer
+from .permissions import IsAdminOrReadOnly
 
 
 @extend_schema(
@@ -38,7 +38,7 @@ They contain personal, educational, and professional details.
 class ProfileViewSet(viewsets.ModelViewSet):
     queryset = Profile.objects.all().order_by('-featured_until', '-created_at')
     serializer_class = ProfileSerializer
-    permission_classes = [IsAuthenticatedOrReadOnly]
+    permission_classes = [IsAdminOrReadOnly]
 
 
 @extend_schema(
@@ -70,7 +70,7 @@ Events represent **community gatherings, trainings, and activities**.
 class EventViewSet(viewsets.ModelViewSet):
     queryset = Event.objects.all().order_by('-start')
     serializer_class = EventSerializer
-    permission_classes = [IsAuthenticatedOrReadOnly]
+    permission_classes = [IsAdminOrReadOnly]
 
 
 @extend_schema(
@@ -111,7 +111,7 @@ Resources represent **documents, links, or videos** shared with the community.
 class ResourceViewSet(viewsets.ModelViewSet):
     queryset = Resource.objects.filter(is_public=True).order_by('-created_at')
     serializer_class = ResourceSerializer
-    permission_classes = [IsAuthenticatedOrReadOnly]
+    permission_classes = [IsAdminOrReadOnly]
 
 
 @extend_schema(
@@ -141,4 +141,4 @@ Each team has:
 class TeamViewSet(viewsets.ModelViewSet):
     queryset = Team.objects.all()
     serializer_class = TeamSerializer
-    permission_classes = [IsAuthenticatedOrReadOnly]
+    permission_classes = [IsAdminOrReadOnly]
