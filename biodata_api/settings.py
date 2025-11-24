@@ -142,15 +142,14 @@ EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend' # During develo
 
 # django-allauth settings to silence deprecation warnings
 ACCOUNT_EMAIL_REQUIRED = True
-ACCOUNT_USERNAME_REQUIRED = False
-ACCOUNT_AUTHENTICATION_METHOD = 'email'
+ACCOUNT_USERNAME_REQUIRED = True
+ACCOUNT_AUTHENTICATION_METHOD = 'username_email'
 ACCOUNT_EMAIL_VERIFICATION = 'optional' # can be 'mandatory'
 ACCOUNT_UNIQUE_EMAIL = True
 
 
 # dj-rest-auth settings
 REST_AUTH = {
-    'LoginSerializer': 'dj_rest_auth.serializers.LoginSerializer',
     'TokenSerializer': 'dj_rest_auth.serializers.TokenSerializer',
     'SESSION_LOGIN': False, # Disable session login
 }
